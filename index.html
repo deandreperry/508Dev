@@ -10,11 +10,14 @@
      source of the "dark gaps in light mode" reported on mobile. -->
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
-<meta name="description" content="Interactive accessibility training for web developers. Learn WCAG 2.1 & 2.2, ADA, and Section 508 through interactive labs, screen reader simulations, keyboard testing, and production-ready UI patterns." />
+<meta name="description" content="The interactive accessibility lab for people who build interfaces. Experience inaccessible UI, repair it, inspect the code, and learn how to test the result." />
 <link rel="icon" type="image/svg+xml" href="./favicon.svg"> 
-<title>508 Dev · Interactive accessibility training for web developers</title>
-<meta property="og:title" content="508 Dev — Interactive accessibility training for web developers">
-<meta property="og:description" content="A premium accessibility engineering platform for web developers. WCAG 2.1/2.2, ADA, and Section 508 with playgrounds, screen reader simulations, ARIA inspectors, and 10 production-ready patterns.">
+<link rel="canonical" href="https://www.508dev.com/">
+<title>508 Dev · Interactive accessibility lab for developers</title>
+<meta property="og:title" content="508 Dev — Interactive accessibility lab for developers">
+<meta property="og:description" content="Break inaccessible interfaces, experience the friction, fix the implementation, and learn how to test the result.">
+<meta property="og:url" content="https://www.508dev.com/">
+<meta property="og:type" content="website">
 <!-- Pre-paint theme init: runs synchronously to prevent flash & desync.
      Must happen BEFORE any rendering or Tailwind processing. -->
 <script>
@@ -1530,6 +1533,7 @@
   .copy-btn svg { width: 14px; height: 14px; display: block; }
 
   /* ---------- Section share links ---------- */
+  section[id] > header h2 { display: inline-block; }
   .share-link {
     display: inline-flex;
     margin-left: 10px;
@@ -1544,8 +1548,9 @@
     vertical-align: middle;
     font-family: inherit;
   }
-  h2:hover .share-link,
-  h3:hover .share-link,
+  h2:hover + .share-link,
+  h3:hover + .share-link,
+  .share-link:hover,
   .share-link:focus-visible { opacity: 1; }
   .share-link:hover { color: var(--accent); background: var(--bg-elev); }
   .share-link.copied { color: #1d8348; opacity: 1; }
@@ -2394,7 +2399,7 @@
     display: grid; place-items: center;
     margin-bottom: 10px;
   }
-  .mobile-card h4 { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .mobile-card h3 { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
   .mobile-card-wcag {
     font-family: "SF Mono", monospace;
     font-size: var(--text-xs);
@@ -2738,7 +2743,7 @@
   @media (max-width: 640px) {
     .sources-section { padding: 24px; border-radius: 16px; }
   }
-  .sources-section h3 {
+  .sources-section > h2 {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -2756,7 +2761,7 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 28px;
   }
-  .sources-col h4 {
+  .sources-col h3 {
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -2970,6 +2975,134 @@
   .tt-demo-trigger:hover + .tt-demo-tip,
   .tt-demo-trigger:focus + .tt-demo-tip { opacity: 1; }
 
+  /* ---------- Product architecture foundations ---------- */
+  .learning-loop {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    background: var(--border);
+  }
+  .learning-loop > li {
+    position: relative;
+    padding: 1.5rem;
+    background: var(--surface);
+    list-style: none;
+  }
+  .learning-loop-step {
+    display: inline-grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    margin-bottom: .85rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    color: var(--accent);
+    font-size: .75rem;
+    font-weight: 750;
+  }
+  .learning-loop strong { display: block; margin-bottom: .35rem; }
+  .learning-loop p { color: var(--muted); font-size: .875rem; line-height: 1.55; }
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .model-card {
+    padding: 1.35rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+  }
+  .model-card h3 { margin-bottom: .5rem; font-size: 1.05rem; font-weight: 700; }
+  .model-card p { color: var(--muted); font-size: .875rem; line-height: 1.55; }
+  .model-card ul { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+  .model-card li {
+    padding: .3rem .55rem;
+    border-radius: 999px;
+    background: var(--bg-elev);
+    color: var(--muted);
+    font-size: .72rem;
+    list-style: none;
+  }
+  .model-card a {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: var(--accent);
+    font-size: .82rem;
+    font-weight: 650;
+  }
+  .example-status {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    width: fit-content;
+    margin-bottom: .65rem;
+    padding: .28rem .55rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-elev);
+    color: var(--muted);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .example-status::before {
+    width: .45rem;
+    height: .45rem;
+    border-radius: 999px;
+    background: currentColor;
+    content: '';
+  }
+  .trust-card dl {
+    display: grid;
+    grid-template-columns: minmax(8rem, .35fr) 1fr;
+    gap: .65rem 1rem;
+    margin-top: 1rem;
+    font-size: .82rem;
+  }
+  .trust-card dt { color: var(--muted); font-weight: 650; }
+  .trust-card dd { min-width: 0; overflow-wrap: anywhere; }
+  .testing-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  .testing-table th,
+  .testing-table td { padding: .75rem; border-bottom: 1px solid var(--border); text-align: left; }
+  .testing-table th { color: var(--muted); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }
+  .test-status {
+    display: inline-flex;
+    padding: .2rem .5rem;
+    border-radius: 999px;
+    background: var(--bg-elev);
+    color: var(--muted);
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  @media (max-width: 820px) {
+    .learning-loop { grid-template-columns: 1fr 1fr; }
+    .model-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .learning-loop { grid-template-columns: 1fr; }
+    .trust-card dl { grid-template-columns: 1fr; gap: .15rem; }
+    .trust-card dd { margin-bottom: .7rem; }
+  }
+  @media (max-width: 767px) {
+    .doc-main,
+    .doc-main section,
+    .doc-main article,
+    .doc-main .grid,
+    .doc-main .grid > * { min-width: 0; }
+    .doc-main .grid { grid-template-columns: minmax(0, 1fr); }
+    .kbd-grid { grid-template-columns: minmax(0, 1fr); }
+    .kbd-card { min-width: 0; }
+    .doc-main pre { max-width: 100%; overflow-x: auto; }
+    .semantic-card { max-width: 100%; overflow-x: auto; }
+    .semantic-table { min-width: 34rem; }
+  }
+
 </style>
 </head>
 <body class="font-sans antialiased">
@@ -3149,12 +3282,13 @@
 
     <!-- Center nav -->
     <nav class="hidden md:flex items-center gap-1 text-[13px] font-medium text-ink-500 dark:text-ink-300" aria-label="Primary">
-      <a href="#patterns" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Patterns</a>
-      <a href="#playgrounds" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Playgrounds</a>
-      <a href="#tools" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Tools</a>
-      <a href="#reference" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Reference</a>
-      <a href="#wcag-index" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">WCAG</a>
-      <a href="#legal" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Legal</a>
+      <a href="/" aria-current="page" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Home</a>
+      <a href="/learn/" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Learn</a>
+      <a href="/playground/" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Playground</a>
+      <a href="/patterns/" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Patterns</a>
+      <a href="/test/" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Test</a>
+      <a href="/reference/" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Reference</a>
+      <a href="/standards/" class="px-3 py-1.5 rounded-full hover:text-ink-800 dark:hover:text-white transition-colors">Standards</a>
     </nav>
 
     <!-- Right controls -->
@@ -3241,16 +3375,17 @@
       Web Accessibility · 2026 Edition
     </p>
     <h1 class="display text-5xl sm:text-6xl md:text-7xl mb-6 text-ink-900 dark:text-white">
-      Interactive accessibility training<br/>
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-accent to-purple-600 dark:from-accent-dark dark:to-pink-400">for web developers.</span>
+      Build interfaces<br/>
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-accent to-purple-600 dark:from-accent-dark dark:to-pink-400">everyone can use.</span>
     </h1>
     <p class="max-w-2xl mx-auto text-lg sm:text-xl text-ink-500 dark:text-ink-300 leading-relaxed">
-      Learn <span class="glossary" tabindex="0" data-tip="Web Content Accessibility Guidelines. The W3C technical standard most courts and regulators treat as the de facto compliance benchmark.">WCAG</span> 2.1 &amp; 2.2, <span class="glossary" tabindex="0" data-tip="Title III of the Americans with Disabilities Act — prohibits discrimination by private 'places of public accommodation,' increasingly interpreted to cover websites and apps.">ADA</span>, and <span class="glossary" tabindex="0" data-tip="Federal law requiring U.S. agencies and their contractors to make electronic and information technology accessible to people with disabilities.">Section 508</span> through interactive labs, screen reader simulations, keyboard testing, and production-ready UI patterns.
+      Interactive accessibility training for developers. Break inaccessible interfaces, experience the friction,
+      fix the implementation, and learn how to test it.
     </p>
 
     <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
       <a href="#playgrounds" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-ink-900 dark:bg-white text-white dark:text-ink-900 font-semibold text-sm hover:opacity-90 transition-opacity">
-        Start the playgrounds
+        Start a playground
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="#patterns" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-ink-50 dark:bg-ink-800 text-ink-800 dark:text-white font-semibold text-sm hover:bg-ink-100 dark:hover:bg-ink-700 transition-colors">
@@ -3261,8 +3396,8 @@
     <!-- Stats row -->
     <dl class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-ink-100 dark:bg-ink-800 rounded-2xl overflow-hidden max-w-3xl mx-auto">
       <div class="bg-white dark:bg-ink-900 px-6 py-5">
-        <dt class="text-[12px] uppercase tracking-wider text-ink-500 font-semibold">WCAG criteria</dt>
-        <dd class="display text-2xl mt-1">87</dd>
+        <dt class="text-[12px] uppercase tracking-wider text-ink-500 font-semibold">Current WCAG 2.2 criteria</dt>
+        <dd class="display text-2xl mt-1">86</dd>
       </div>
       <div class="bg-white dark:bg-ink-900 px-6 py-5">
         <dt class="text-[12px] uppercase tracking-wider text-ink-500 font-semibold">UI patterns</dt>
@@ -3277,6 +3412,28 @@
         <dd class="display text-2xl mt-1">5</dd>
       </div>
     </dl>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- LEARNING MODEL & PATHS                                       -->
+  <!-- ============================================================ -->
+  <section id="learning-paths" class="py-16 sm:py-24" data-reveal aria-labelledby="learning-paths-heading">
+    <header class="mb-10">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">How 508 Dev teaches</p>
+      <h2 id="learning-paths-heading" class="display text-4xl sm:text-5xl mb-4">Learn by repairing the interface.</h2>
+      <p class="max-w-2xl text-lg text-ink-500 dark:text-ink-300">
+        Standards explain the requirement. The lab turns it into a practical engineering loop.
+      </p>
+    </header>
+
+    <ol class="learning-loop mb-12" aria-label="508 Dev learning loop">
+      <li><span class="learning-loop-step">1</span><strong>Learn</strong><p>Understand the requirement and the people it affects.</p></li>
+      <li><span class="learning-loop-step">2</span><strong>Experience</strong><p>Try the inaccessible version using the affected interaction.</p></li>
+      <li><span class="learning-loop-step">3</span><strong>Fix</strong><p>Compare the repaired behavior and inspect the implementation.</p></li>
+      <li><span class="learning-loop-step">4</span><strong>Test</strong><p>Run manual checks and record browser and assistive-technology results.</p></li>
+    </ol>
+
+    <div id="learning-path-grid" class="model-grid" aria-label="Learning paths"></div>
   </section>
 
   <!-- ============================================================ -->
@@ -3303,8 +3460,9 @@
           </div>
           <h3 id="pg1-heading" class="display text-2xl sm:text-3xl">Target Size (Minimum)</h3>
           <p class="text-ink-500 dark:text-ink-300 mt-2 max-w-2xl">
-            Interactive targets must be at least <strong>24 × 24 CSS pixels</strong>. Below the threshold,
-            users with motor disabilities, tremors, or touchscreens systematically miss.
+            WCAG 2.2 SC 2.5.8 establishes a <strong>24 × 24 CSS pixel</strong> minimum at Level AA,
+            with spacing, equivalent-control, inline, user-agent-control, and essential-presentation exceptions.
+            Larger targets can still be easier to operate.
           </p>
         </div>
         <button class="mark-done px-4 py-2 rounded-full text-sm font-semibold bg-white dark:bg-ink-700 border border-ink-200 dark:border-ink-600 hover:bg-ink-100 dark:hover:bg-ink-600 transition-colors" data-module="target-size">
@@ -3318,9 +3476,9 @@
         <div class="rounded-2xl bg-white dark:bg-ink-900 p-6 border border-danger-light/30 dark:border-danger-dark/30">
           <div class="flex items-center gap-2 mb-4">
             <span class="w-2 h-2 rounded-full bg-danger-light dark:bg-danger-dark"></span>
-            <span class="text-[12px] font-semibold uppercase tracking-wider text-danger-light dark:text-danger-dark">Fails 2.5.8</span>
+            <span class="text-[12px] font-semibold uppercase tracking-wider text-danger-light dark:text-danger-dark">Fails when no exception applies</span>
           </div>
-          <p class="text-sm text-ink-500 dark:text-ink-300 mb-6">A 16 × 16 px button. Hard to hit. Watch your error rate.</p>
+          <p class="text-sm text-ink-500 dark:text-ink-300 mb-6">A 16 × 16 px button placed near other targets can fail both the size requirement and spacing exception.</p>
 
           <div class="bg-ink-50 dark:bg-ink-800 rounded-xl p-8 grid place-items-center min-h-[140px] target-overlay" data-wcag="2.5.8 FAIL">
             <button class="tiny-tap tap-target" data-target="bad" aria-label="Bad target — 16 by 16 pixels"></button>
@@ -3333,7 +3491,7 @@
             </div>
             <button class="sr-play" data-sr-target=".tiny-tap">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-              Hear screen reader
+              Hear simulated announcement
             </button>
           </div>
           <div class="sr-output" data-sr-output="bad-target"></div>
@@ -3343,9 +3501,9 @@
         <div class="rounded-2xl bg-white dark:bg-ink-900 p-6 border border-success-light/30 dark:border-success-dark/30">
           <div class="flex items-center gap-2 mb-4">
             <span class="w-2 h-2 rounded-full bg-success-light dark:bg-success-dark"></span>
-            <span class="text-[12px] font-semibold uppercase tracking-wider text-success-light dark:text-success-dark">Passes 2.5.8</span>
+            <span class="text-[12px] font-semibold uppercase tracking-wider text-success-light dark:text-success-dark">Passes AA and enhanced AAA size</span>
           </div>
-          <p class="text-sm text-ink-500 dark:text-ink-300 mb-6">A 44 × 44 px button. Comfortable, conformant, and beyond AAA.</p>
+          <p class="text-sm text-ink-500 dark:text-ink-300 mb-6">A 44 × 44 CSS px target meets WCAG 2.5.5 Target Size (Enhanced), Level AAA, as well as the AA minimum.</p>
 
           <div class="bg-ink-50 dark:bg-ink-800 rounded-xl p-8 grid place-items-center min-h-[140px] target-overlay good" data-wcag="2.5.8 PASS">
             <button class="good-tap tap-target" data-target="good">Subscribe</button>
@@ -3358,7 +3516,7 @@
             </div>
             <button class="sr-play" data-sr-target=".good-tap">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-              Hear screen reader
+              Hear simulated announcement
             </button>
           </div>
           <div class="sr-output" data-sr-output="good-target"></div>
@@ -3368,8 +3526,9 @@
       <div class="mt-8 rounded-xl bg-white dark:bg-ink-900 border border-ink-100 dark:border-ink-700 p-5 flex items-start gap-3">
         <svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
         <p class="text-sm text-ink-600 dark:text-ink-200">
-          <strong>Pro tip:</strong> Apple HIG recommends 44 × 44 pt, Material recommends 48 × 48 dp.
-          The WCAG 2.2 floor of 24 × 24 px is the legal minimum, not the target.
+          <strong>Keep the categories separate:</strong> WCAG 2.2 AA defines the 24 × 24 CSS px requirement and its exceptions;
+          WCAG 2.5.5 defines the enhanced 44 × 44 CSS px AAA criterion; platform and design-system guidance may recommend other sizes.
+          <a class="text-accent dark:text-accent-dark underline" href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum" target="_blank" rel="noopener noreferrer">Read the W3C explanation<span class="sr-only"> (opens in a new tab)</span></a>.
         </p>
       </div>
     </article>
@@ -3636,7 +3795,7 @@
       <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">Pattern library</p>
       <h2 id="patterns-heading" class="display text-4xl sm:text-5xl mb-4">Components, done right.</h2>
       <p class="max-w-2xl text-lg text-ink-500 dark:text-ink-300">
-        Production-ready patterns with the keyboard map, the accessible name, and the code in your framework.
+        Reference implementations with keyboard maps, accessible-name guidance, and code you can adapt and test in your own product.
         Copy, adapt, ship.
       </p>
     </header>
@@ -4040,13 +4199,13 @@
         <div class="pattern-demo">
           <div class="w-full max-w-xs">
             <label for="date-demo" class="block text-xs font-semibold mb-1">Departure date</label>
-            <input id="date-demo" type="date" class="w-full px-3 py-2 rounded-lg border border-ink-200 dark:border-ink-600 bg-white dark:bg-ink-800 text-sm" autocomplete="bday" aria-describedby="date-hint">
+            <input id="date-demo" type="date" class="w-full px-3 py-2 rounded-lg border border-ink-200 dark:border-ink-600 bg-white dark:bg-ink-800 text-sm" aria-describedby="date-hint">
             <p id="date-hint" class="text-xs text-ink-500 dark:text-ink-300 mt-1">MM/DD/YYYY</p>
           </div>
         </div>
         <div class="pattern-keys">
           <span><strong>type="date"</strong>Native picker</span>
-          <span><strong>autocomplete</strong>WCAG 1.3.5</span>
+          <span><strong>autocomplete</strong>No token applies to a travel date</span>
         </div>
         <div class="framework-tabs" role="tablist" aria-label="Code framework">
           <button class="framework-tab" data-fw="html" aria-selected="true" role="tab">HTML</button>
@@ -4054,15 +4213,36 @@
         <div class="framework-pane active" data-fw-pane="html">
           <pre class="code-figure__body"><code><span class="tk-tag">&lt;label</span> <span class="tk-attr">for</span>=<span class="tk-str">"d"</span><span class="tk-tag">&gt;</span>Departure date<span class="tk-tag">&lt;/label&gt;</span>
 <span class="tk-tag">&lt;input</span> <span class="tk-attr">id</span>=<span class="tk-str">"d"</span> <span class="tk-attr">type</span>=<span class="tk-str">"date"</span>
-       <span class="tk-attr">autocomplete</span>=<span class="tk-str">"bday"</span>
        <span class="tk-attr">aria-describedby</span>=<span class="tk-str">"d-fmt"</span><span class="tk-tag">&gt;</span>
 <span class="tk-tag">&lt;p</span> <span class="tk-attr">id</span>=<span class="tk-str">"d-fmt"</span><span class="tk-tag">&gt;</span>MM/DD/YYYY<span class="tk-tag">&lt;/p&gt;</span>
 <span class="tk-comment">// Native is almost always better than a custom calendar</span>
+<span class="tk-comment">// "bday" means the user's birthday; it is incorrect for travel dates</span>
 <span class="tk-comment">// Custom calendars: APG datepicker is the reference</span></code></pre>
         </div>
       </article>
 
     </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- DOCUMENTED TESTING MATRIX                                    -->
+  <!-- ============================================================ -->
+  <section id="testing-matrix" class="py-16 sm:py-24" data-reveal aria-labelledby="testing-matrix-heading">
+    <header class="mb-10">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">Evidence, not assumptions</p>
+      <h2 id="testing-matrix-heading" class="display text-4xl sm:text-5xl mb-4">Browser and assistive-technology matrix.</h2>
+      <p class="max-w-2xl text-lg text-ink-500 dark:text-ink-300">
+        A maintainable record for tested, partially tested, untested, and known-issue combinations. Nothing is marked tested without documented verification.
+      </p>
+    </header>
+    <div class="rounded-2xl bg-white dark:bg-ink-800/40 border border-ink-100 dark:border-ink-700/50 overflow-x-auto shadow-card dark:shadow-card-dark">
+      <table class="testing-table">
+        <caption class="sr-only">Current browser and assistive-technology testing status</caption>
+        <thead><tr><th scope="col">Browser</th><th scope="col">Screen reader</th><th scope="col">Platform</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
+        <tbody id="testing-matrix-body"></tbody>
+      </table>
+    </div>
+
   </section>
 
   <!-- ============================================================ -->
@@ -4118,8 +4298,8 @@
 
     <!-- ARIA INSPECTOR -->
     <div id="tool-aria-inspector" style="scroll-margin-top: 140px;">
-      <h3 class="display text-2xl mb-2">ARIA tree inspector</h3>
-      <p class="text-sm text-ink-500 dark:text-ink-300 mb-4">Click <strong>any</strong> element on this page to see its accessibility tree representation — what a screen reader actually receives.</p>
+      <h3 class="display text-2xl mb-2">Accessibility Tree Inspector</h3>
+      <p class="text-sm text-ink-500 dark:text-ink-300 mb-4">Inspect the accessibility semantics exposed by the browser and approximate what assistive technologies may receive. Actual output varies by browser, operating system, accessibility API, screen reader, and screen-reader version.</p>
       <div id="aria-tree" class="aria-tree" aria-live="polite">
         <div class="aria-tree-empty">Click any element to inspect it…</div>
       </div>
@@ -4143,7 +4323,7 @@
     <!-- HEADINGS OUTLINE -->
     <div id="tool-headings" class="mt-10" style="scroll-margin-top: 140px;">
       <h3 class="display text-2xl mb-2">Headings outline</h3>
-      <p class="text-sm text-ink-500 dark:text-ink-300 mb-4">The H1–H6 tree of this page, the way a screen reader navigates it. Skipped levels, missing H1, and empty headings are flagged. Click any heading to scroll to it.</p>
+      <p class="text-sm text-ink-500 dark:text-ink-300 mb-4">Inspect this page's H1–H6 outline. Skipped levels, missing H1, and empty headings are flagged. Screen-reader navigation behavior varies by product and version.</p>
       <div class="outline-tool">
         <div class="outline-actions">
           <button id="outline-refresh" class="health-btn-secondary">Rescan page</button>
@@ -4156,7 +4336,7 @@
     <!-- LANDMARKS VIEWER -->
     <div id="tool-landmarks" class="mt-10" style="scroll-margin-top: 140px;">
       <h3 class="display text-2xl mb-2">Landmarks viewer</h3>
-      <p class="text-sm text-ink-500 dark:text-ink-300 mb-4">Toggle the overlay to see every landmark on this page — banner, navigation, main, complementary, contentinfo, search, region, form — labeled and outlined. This is the "page outline" screen reader users perceive when they jump by region.</p>
+      <p class="text-sm text-ink-500 dark:text-ink-300 mb-4">Toggle the overlay to inspect page landmarks — banner, navigation, main, complementary, contentinfo, search, region, and form. Assistive technologies may expose and navigate this structure differently.</p>
       <div class="landmarks-tool">
         <div class="landmarks-actions">
           <button id="landmarks-toggle" class="health-btn-primary" aria-pressed="false">Show landmarks overlay</button>
@@ -4382,16 +4562,19 @@
 
   </section>
 
-    <header id="legal" class="mb-12 sm:mb-16" style="scroll-margin-top: 80px;" aria-labelledby="legal-heading">
-      <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">Legal frameworks</p>
-      <h2 id="legal-heading" class="display text-4xl sm:text-5xl mb-4">The law, demystified.</h2>
+  <section id="standards" class="py-16 sm:py-24" data-reveal aria-labelledby="legal-heading">
+    <header id="legal" class="mb-12 sm:mb-16" style="scroll-margin-top: 80px;">
+      <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">Standards and legal context</p>
+      <h2 id="legal-heading" class="display text-4xl sm:text-5xl mb-4">Know what each framework does.</h2>
       <p class="max-w-2xl text-lg text-ink-500 dark:text-ink-300">
-        WCAG is the technical standard. Section 508 and the ADA are the laws that adopt — and enforce — it
-        across different sectors.
+        WCAG provides technical accessibility criteria. Applicable laws and regulations may incorporate
+        specific WCAG versions or use WCAG as an accessibility benchmark. Section 508, ADA Title II, and
+        ADA Title III have different scopes and should not be treated as interchangeable.
       </p>
+      <p class="max-w-2xl mt-4 text-sm text-ink-500 dark:text-ink-300"><strong>Educational use:</strong> 508 Dev provides technical accessibility education, not legal advice.</p>
     </header>
 
-    <div class="grid lg:grid-cols-2 gap-6">
+    <div class="grid xl:grid-cols-3 gap-6">
 
       <!-- Section 508 -->
       <article class="rounded-3xl bg-white dark:bg-ink-800/40 border border-ink-100 dark:border-ink-700/50 p-8 sm:p-10 shadow-card dark:shadow-card-dark" aria-labelledby="s508-heading">
@@ -4403,8 +4586,8 @@
         </div>
         <h3 id="s508-heading" class="display text-2xl mb-2">Section 508</h3>
         <p class="text-ink-500 dark:text-ink-300 mb-6">
-          A 1998 amendment to the Rehabilitation Act of 1973. Requires <strong>federal agencies</strong> to
-          make their electronic and information technology (EIT) accessible to people with disabilities.
+          Federal ICT accessibility requirements that apply to covered technology developed, procured,
+          maintained, or used by federal agencies.
         </p>
 
         <button class="mark-done mb-6 px-4 py-2 rounded-full text-sm font-semibold bg-ink-50 dark:bg-ink-700 border border-ink-200 dark:border-ink-600 hover:bg-ink-100 dark:hover:bg-ink-600 transition-colors" data-module="section-508">
@@ -4414,19 +4597,47 @@
         <dl class="space-y-4 text-sm">
           <div>
             <dt class="font-semibold mb-1">Who it covers</dt>
-            <dd class="text-ink-500 dark:text-ink-300">Federal agencies, their contractors, and any organization that develops, procures, or maintains technology used by the federal government.</dd>
+            <dd class="text-ink-500 dark:text-ink-300">Federal agencies and covered federal ICT. Contract requirements can flow to vendors that supply federal technology.</dd>
           </div>
           <div>
             <dt class="font-semibold mb-1">The standard</dt>
-            <dd class="text-ink-500 dark:text-ink-300">The 2018 "ICT Refresh" formally adopted <strong>WCAG 2.0 Level A &amp; AA</strong>. Many agencies are now voluntarily targeting WCAG 2.1 AA pending the next refresh.</dd>
+            <dd class="text-ink-500 dark:text-ink-300">The Revised 508 Standards incorporate <strong>WCAG 2.0 Level A and AA success criteria and conformance requirements</strong> by reference for covered web and non-web electronic content.</dd>
           </div>
           <div>
             <dt class="font-semibold mb-1">Enforcement</dt>
-            <dd class="text-ink-500 dark:text-ink-300">Administrative complaints filed with the agency; civil suits permitted under §508(f). Federal employees may sue for damages and equitable relief.</dd>
+            <dd class="text-ink-500 dark:text-ink-300">Compliance is handled within the federal statutory, procurement, and agency context. Consult the applicable agency process for a specific matter.</dd>
           </div>
           <div>
             <dt class="font-semibold mb-1">Procurement teeth</dt>
-            <dd class="text-ink-500 dark:text-ink-300">Vendors must produce an <strong>ACR/VPAT</strong> (Accessibility Conformance Report / Voluntary Product Accessibility Template) to bid on federal contracts.</dd>
+            <dd class="text-ink-500 dark:text-ink-300">Procurements commonly request an <strong>Accessibility Conformance Report (ACR)</strong>; the exact solicitation controls what a vendor must provide.</dd>
+          </div>
+        </dl>
+      </article>
+
+      <!-- ADA Title II -->
+      <article class="rounded-3xl bg-white dark:bg-ink-800/40 border border-ink-100 dark:border-ink-700/50 p-8 sm:p-10 shadow-card dark:shadow-card-dark" aria-labelledby="ada-title-ii-heading">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-accent/10 dark:bg-accent-dark/15 grid place-items-center text-accent dark:text-accent-dark" aria-hidden="true">II</div>
+          <span class="text-[12px] font-semibold uppercase tracking-[0.2em] text-ink-500">Civil Rights Regulation</span>
+        </div>
+        <h3 id="ada-title-ii-heading" class="display text-2xl mb-2">ADA Title II</h3>
+        <p class="text-ink-500 dark:text-ink-300 mb-6">
+          Applies to <strong>state and local government entities</strong>. The DOJ's web and mobile app rule
+          directly incorporates WCAG 2.1 Level A and AA for covered content, subject to the rule's exceptions.
+        </p>
+
+        <dl class="space-y-4 text-sm">
+          <div>
+            <dt class="font-semibold mb-1">Who it covers</dt>
+            <dd class="text-ink-500 dark:text-ink-300">State and local governments, called public entities under Title II.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold mb-1">Current compliance dates</dt>
+            <dd class="text-ink-500 dark:text-ink-300"><span data-title-ii-dates>April 26, 2027 for entities serving 50,000 or more people; April 26, 2028 for smaller entities and special district governments.</span></dd>
+          </div>
+          <div>
+            <dt class="font-semibold mb-1">Technical standard</dt>
+            <dd class="text-ink-500 dark:text-ink-300">WCAG 2.1 Level A and AA, with definitions, exceptions, and defenses provided by the Title II rule.</dd>
           </div>
         </dl>
       </article>
@@ -4441,8 +4652,8 @@
         </div>
         <h3 id="ada-heading" class="display text-2xl mb-2">ADA Title III</h3>
         <p class="text-ink-500 dark:text-ink-300 mb-6">
-          The Americans with Disabilities Act (1990). Title III prohibits discrimination by <strong>private
-          places of public accommodation</strong>. Courts increasingly include websites and apps in this definition.
+          Applies to covered <strong>private places of public accommodation</strong>. Its web application is not
+          identical to the DOJ's Title II rule and can depend on jurisdiction and facts.
         </p>
 
         <button class="mark-done mb-6 px-4 py-2 rounded-full text-sm font-semibold bg-ink-50 dark:bg-ink-700 border border-ink-200 dark:border-ink-600 hover:bg-ink-100 dark:hover:bg-ink-600 transition-colors" data-module="ada-title-iii">
@@ -4452,15 +4663,15 @@
         <dl class="space-y-4 text-sm">
           <div>
             <dt class="font-semibold mb-1">Who it covers</dt>
-            <dd class="text-ink-500 dark:text-ink-300">Private businesses open to the public: retailers, restaurants, hotels, banks, healthcare, education, entertainment, and increasingly, all consumer-facing digital services.</dd>
+            <dd class="text-ink-500 dark:text-ink-300">Covered private places of public accommodation, including categories such as retail, lodging, food service, healthcare, education, and entertainment.</dd>
           </div>
           <div>
             <dt class="font-semibold mb-1">The standard</dt>
-            <dd class="text-ink-500 dark:text-ink-300">No statutorily defined technical standard for the web (yet). The DOJ has repeatedly affirmed that <strong>WCAG 2.1 AA</strong> is the de facto compliance benchmark in litigation and settlements.</dd>
+            <dd class="text-ink-500 dark:text-ink-300">There is no single nationwide web-specific WCAG conformance rule equivalent to the Title II rule. WCAG is widely used as a technical benchmark.</dd>
           </div>
           <div>
             <dt class="font-semibold mb-1">Enforcement</dt>
-            <dd class="text-ink-500 dark:text-ink-300">Private right of action — any individual can sue. The DOJ also enforces. Title III itself allows injunctive relief plus attorney's fees; many states (e.g. California's Unruh Act) add statutory damages of $4,000+ per visit.</dd>
+            <dd class="text-ink-500 dark:text-ink-300">Enforcement paths and available remedies depend on federal law, jurisdiction, and potentially applicable state law. Seek qualified legal advice for a specific situation.</dd>
           </div>
           <div>
             <dt class="font-semibold mb-1">Landmark case</dt>
@@ -4470,10 +4681,10 @@
       </article>
     </div>
 
-    <!-- Real cases -->
+    <!-- Selected legal developments -->
     <div class="mt-12">
-      <h3 class="display text-2xl mb-2">Real cases. Real costs.</h3>
-      <p class="text-ink-500 dark:text-ink-300 mb-6 text-sm">When accessibility isn't built in, courts decide what it costs. Selected landmark cases:</p>
+      <h3 class="display text-2xl mb-2">Selected legal developments.</h3>
+      <p class="text-ink-500 dark:text-ink-300 mb-6 text-sm">These examples illustrate how digital accessibility questions have been handled in particular jurisdictions. They are context, not a substitute for legal advice.</p>
 
       <div class="grid md:grid-cols-2 gap-4">
 
@@ -4600,7 +4811,7 @@
       </div>
 
       <div class="mt-6 rounded-2xl p-5 border border-warn-light/30 dark:border-warn-dark/30 bg-white dark:bg-ink-800/40">
-        <p class="text-sm text-ink-600 dark:text-ink-200"><strong>The trend:</strong> ADA digital accessibility lawsuit filings surpassed 4,500 in 2023 — up from under 100 in 2014. The plaintiff's bar has industrialized this. Average defense cost: $250K–$1M even if you win.</p>
+        <p class="text-sm text-ink-600 dark:text-ink-200"><strong>Engineering takeaway:</strong> Accessibility defects can create legal, operational, customer-experience, and remediation risk. Build accessibility into design, implementation, and review rather than relying on uncertain cost estimates.</p>
       </div>
     </div>
 
@@ -4612,17 +4823,22 @@
           <tr class="text-left text-[12px] uppercase tracking-wider text-ink-500 font-semibold">
             <th scope="col" class="py-3 pr-4">Dimension</th>
             <th scope="col" class="py-3 pr-4">Section 508</th>
+            <th scope="col" class="py-3 pr-4">ADA Title II</th>
             <th scope="col" class="py-3">ADA Title III</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-ink-100 dark:divide-ink-700">
-          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Scope</th>           <td class="py-3 pr-4 text-ink-500 dark:text-ink-300">Federal government &amp; contractors</td><td class="py-3 text-ink-500 dark:text-ink-300">Private public accommodations</td></tr>
-          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Adopted standard</th><td class="py-3 pr-4 text-ink-500 dark:text-ink-300">WCAG 2.0 AA (ICT Refresh)</td><td class="py-3 text-ink-500 dark:text-ink-300">WCAG 2.1 AA (de facto)</td></tr>
-          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Enforcement</th>     <td class="py-3 pr-4 text-ink-500 dark:text-ink-300">Agency complaints, §508(f) suits</td><td class="py-3 text-ink-500 dark:text-ink-300">Private suits + DOJ</td></tr>
-          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Penalties</th>       <td class="py-3 pr-4 text-ink-500 dark:text-ink-300">Contract loss, remediation orders</td><td class="py-3 text-ink-500 dark:text-ink-300">Injunctions, fees, state damages</td></tr>
-          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Documentation</th>   <td class="py-3 pr-4 text-ink-500 dark:text-ink-300">VPAT / ACR required</td><td class="py-3 text-ink-500 dark:text-ink-300">Audit report recommended</td></tr>
+          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Scope</th><td class="py-3 pr-4 text-ink-500 dark:text-ink-300">Covered federal ICT</td><td class="py-3 pr-4 text-ink-500 dark:text-ink-300">State and local governments</td><td class="py-3 text-ink-500 dark:text-ink-300">Covered private places of public accommodation</td></tr>
+          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Technical standard</th><td class="py-3 pr-4 text-ink-500 dark:text-ink-300">WCAG 2.0 A and AA incorporated by reference</td><td class="py-3 pr-4 text-ink-500 dark:text-ink-300">WCAG 2.1 A and AA under the web/mobile rule</td><td class="py-3 text-ink-500 dark:text-ink-300">No equivalent nationwide web-specific WCAG rule; WCAG is a common benchmark</td></tr>
+          <tr><th scope="row" class="py-3 pr-4 font-semibold align-top">Primary authority</th><td class="py-3 pr-4 text-ink-500 dark:text-ink-300">Rehabilitation Act and Revised 508 Standards</td><td class="py-3 pr-4 text-ink-500 dark:text-ink-300">ADA and 28 C.F.R. Part 35, Subpart H</td><td class="py-3 text-ink-500 dark:text-ink-300">ADA and Title III regulations; application varies by jurisdiction and facts</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div id="reviewed-against" class="mt-12" aria-labelledby="reviewed-against-heading">
+      <h3 id="reviewed-against-heading" class="display text-2xl mb-2">Reviewed against.</h3>
+      <p class="text-sm text-ink-500 dark:text-ink-300 mb-6">Authority metadata is maintained centrally so versions, dates, sources, and jurisdiction notes can be updated consistently.</p>
+      <div id="trust-grid" class="model-grid"></div>
     </div>
   </section>
 
@@ -4724,49 +4940,49 @@
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></div>
         <div class="mobile-card-wcag">2.5.5 / 2.5.8</div>
-        <h4>Touch target size</h4>
-        <p>iOS HIG: 44pt. Material: 48dp. WCAG 2.2 AA floor: 24×24 CSS px. Always design to the platform max, not the WCAG floor.</p>
+        <h3>Touch target size</h3>
+        <p>WCAG 2.2 AA uses a 24×24 CSS px minimum with defined exceptions. WCAG 2.5.5 sets 44×44 CSS px at AAA; platform guidance uses its own units and recommendations.</p>
       </div>
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 18h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="mobile-card-wcag">1.3.4</div>
-        <h4>Orientation</h4>
+        <h3>Orientation</h3>
         <p>Don't lock to portrait or landscape. Some users mount their device permanently in one orientation.</p>
       </div>
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="mobile-card-wcag">1.4.10</div>
-        <h4>Reflow</h4>
+        <h3>Reflow</h3>
         <p>Content reflows to 320px CSS px wide without two-axis scrolling. Test in 320×256.</p>
       </div>
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="mobile-card-wcag">1.4.12</div>
-        <h4>Text spacing</h4>
+        <h3>Text spacing</h3>
         <p>Layout must survive 200% line height, 50% paragraph space, 16% letter space — without clipping or overlap.</p>
       </div>
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="mobile-card-wcag">2.5.4</div>
-        <h4>Motion actuation</h4>
+        <h3>Motion actuation</h3>
         <p>If shake-to-undo exists, also offer a button. Motion-only triggers exclude users with tremors or mounted devices.</p>
       </div>
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><text x="3" y="18" font-size="16" font-family="system-ui" font-weight="bold" fill="currentColor">A</text><text x="13" y="20" font-size="20" font-family="system-ui" font-weight="bold" fill="currentColor">A</text></svg></div>
         <div class="mobile-card-wcag">1.4.4</div>
-        <h4>Text scaling</h4>
+        <h3>Text scaling</h3>
         <p>Respect iOS Dynamic Type and Android font scale. Use scalable units, not absolute px for body text.</p>
       </div>
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 10c0-3 2-5 6-5s6 2 6 5v8H6v-8z" stroke="currentColor" stroke-width="1.5"/><path d="M10 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="mobile-card-wcag">2.5.1</div>
-        <h4>Pointer gestures</h4>
+        <h3>Pointer gestures</h3>
         <p>Anything done with a swipe/pinch must also work with a single tap (or button). Don't gate features behind gestures.</p>
       </div>
       <div class="mobile-card">
         <div class="mobile-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3v18M3 8h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="mobile-card-wcag">Spacing</div>
-        <h4>Target spacing</h4>
+        <h3>Target spacing</h3>
         <p>Adjacent touch targets need 8px+ gap to prevent mis-taps for users with motor impairments. WCAG 2.5.8 partly covers this via "spacing".</p>
       </div>
     </div>
@@ -4777,11 +4993,11 @@
   <section id="wcag-index" class="py-16 sm:py-24" data-reveal aria-labelledby="wcag-index-heading">
 
     <header class="mb-10">
-      <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">All 87 criteria</p>
+      <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">86 current criteria + 1 historical criterion</p>
       <h2 id="wcag-index-heading" class="display text-4xl sm:text-5xl mb-4">The complete WCAG index.</h2>
       <p class="max-w-2xl text-lg text-ink-500 dark:text-ink-300">
-        Every success criterion across WCAG 2.0, 2.1, and 2.2 — searchable, filterable, in plain English.
-        Tap any number to jump to the W3C definition.
+        This dataset contains the 86 success criteria currently in WCAG 2.2 plus SC 4.1.1 Parsing,
+        retained and labeled for WCAG 2.0/2.1 historical and policy reference. Select a number to open the W3C source.
       </p>
     </header>
 
@@ -4812,7 +5028,7 @@
       <div class="wcag-filter-row wcag-filter-search">
         <label class="wcag-filter-label" for="wcag-search">Search</label>
         <input id="wcag-search" type="search" placeholder="Try '1.4.3', 'contrast', 'keyboard'…" autocomplete="off">
-        <span id="wcag-count" class="wcag-count" aria-live="polite" aria-atomic="true">0 of 87</span>
+        <span id="wcag-count" class="wcag-count" aria-live="polite" aria-atomic="true">0 of 87 entries</span>
       </div>
     </div>
 
@@ -4849,6 +5065,41 @@
   </section>
 
 <!-- ============================================================== -->
+<!-- TRUST & GOVERNANCE                                             -->
+<!-- ============================================================== -->
+<section id="governance" class="py-16 sm:py-24" data-reveal aria-labelledby="governance-heading">
+  <header class="mb-10">
+    <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-dark mb-3">Trust and governance</p>
+    <h2 id="governance-heading" class="display text-4xl sm:text-5xl mb-4">Show the work behind the guidance.</h2>
+    <p class="max-w-2xl text-lg text-ink-500 dark:text-ink-300">How 508 Dev researches examples, evaluates its own accessibility, documents changes, and accepts corrections.</p>
+  </header>
+
+  <div class="model-grid">
+    <article id="accessibility-statement" class="model-card">
+      <h3>Accessibility statement</h3>
+      <p>508 Dev is committed to a keyboard-operable, semantic, reflow-friendly learning experience with visible focus and reduced-motion support.</p>
+      <p class="mt-3"><strong>Known limitations:</strong> browser and assistive-technology coverage is not yet verified across the full matrix, and browser-based simulations do not reproduce actual assistive-technology output.</p>
+      <a href="#testing-matrix">Review current testing status <span aria-hidden="true">→</span></a>
+    </article>
+    <article id="methodology" class="model-card">
+      <h3>Methodology</h3>
+      <p>Standards guidance starts with W3C/WAI. Federal requirements use official U.S. government sources. Examples use native HTML first and document ARIA only when it supplies necessary semantics or state.</p>
+      <a href="#sources">Review primary sources <span aria-hidden="true">→</span></a>
+    </article>
+    <article id="changelog" class="model-card">
+      <h3>Changelog</h3>
+      <p><time datetime="2026-09-02">September 2, 2026</time>: corrected target-size, autocomplete, legal-framework, WCAG-count, heading, inspector, and implementation-status guidance; added learning and trust foundations.</p>
+      <a href="https://github.com/deandreperry/508Dev/commits/main/" target="_blank" rel="noopener noreferrer">Browse repository history<span class="sr-only"> (opens in a new tab)</span> <span aria-hidden="true">→</span></a>
+    </article>
+    <article id="corrections" class="model-card">
+      <h3>Corrections and feedback</h3>
+      <p>Report inaccurate guidance, an accessibility defect, a broken example, or a browser/assistive-technology inconsistency. Include the page area, expected behavior, actual behavior, and test environment.</p>
+      <a href="https://github.com/deandreperry/508Dev/issues/new" target="_blank" rel="noopener noreferrer">Report an issue on GitHub<span class="sr-only"> (opens in a new tab)</span> <span aria-hidden="true">→</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================== -->
 <!-- SOURCES & LEGAL REFERENCES                                     -->
 <!--                                                                -->
 <!-- A consolidated, authoritative bibliography. All standards URLs -->
@@ -4857,7 +5108,7 @@
 <!-- (WCAG 2.1 → 2.2 → 3.0; Section 508 Refresh; DOJ guidance).     -->
 <!-- ============================================================== -->
 <section id="sources" class="sources-section max-w-7xl mx-auto px-6 sm:px-8 mt-12" aria-labelledby="sources-heading">
-  <h3 id="sources-heading" class="display">Sources &amp; Legal References</h3>
+  <h2 id="sources-heading" class="display">Sources &amp; Legal References</h2>
   <p class="sources-intro">
     Every legal claim, standard, and case study in this platform is grounded in primary sources. Standards URLs point to the W3C and U.S. government canonical documents so they stay current as the specifications and guidance evolve.
   </p>
@@ -4866,11 +5117,11 @@
 
     <!-- Standards & specifications -->
     <div class="sources-col">
-      <h4>Standards &amp; specifications</h4>
+      <h3>Standards &amp; specifications</h3>
       <ul>
         <li>
           <cite>WCAG 2.1 (W3C Recommendation)</cite>
-          <span class="sig">The current de facto baseline for digital accessibility under the ADA.</span>
+          <span class="sig">A W3C technical standard incorporated by some regulations and used as a benchmark in other accessibility contexts.</span>
           <a class="citation-link" href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer" aria-label="W3C Web Content Accessibility Guidelines 2.1 (opens in new tab)">
             w3.org/TR/WCAG21
             <svg class="ext-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -4905,7 +5156,7 @@
 
     <!-- Government resources -->
     <div class="sources-col">
-      <h4>Government resources</h4>
+      <h3>Government resources</h3>
       <ul>
         <li>
           <cite>ADA.gov</cite>
@@ -4932,10 +5183,10 @@
           </a>
         </li>
         <li>
-          <cite>DOJ Title II Web &amp; Mobile Rule (28 C.F.R. § 35.200, 2024)</cite>
-          <span class="sig">Final rule requiring state and local governments' web content and mobile apps to conform to WCAG 2.1 Level AA.</span>
-          <a class="citation-link" href="https://www.ada.gov/notices/2024/04/24/web-rule/" target="_blank" rel="noopener noreferrer" aria-label="DOJ Title II Web and Mobile App Accessibility Final Rule (opens in new tab)">
-            ada.gov · Title II web rule
+          <cite>DOJ Title II Web &amp; Mobile Rule fact sheet</cite>
+          <span class="sig">Current DOJ summary of the WCAG 2.1 Level AA requirement, exceptions, and compliance dates amended in 2026.</span>
+          <a class="citation-link" href="https://www.ada.gov/resources/2024-03-08-web-rule/" target="_blank" rel="noopener noreferrer" aria-label="DOJ Title II Web and Mobile App Accessibility Rule fact sheet (opens in new tab)">
+            ada.gov · current Title II fact sheet
             <svg class="ext-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </li>
@@ -4944,7 +5195,7 @@
 
     <!-- Landmark cases -->
     <div class="sources-col">
-      <h4>Landmark cases</h4>
+      <h3>Landmark cases</h3>
       <ul>
         <li>
           <cite>Tennessee v. Lane</cite>, 541 U.S. 509 (2004)
@@ -4999,7 +5250,7 @@
 
     <!-- Testing & evaluation -->
     <div class="sources-col">
-      <h4>Testing &amp; evaluation</h4>
+      <h3>Testing &amp; evaluation</h3>
       <ul>
         <li>
           <cite>WCAG 2 Quick Reference (W3C)</cite>
@@ -5059,7 +5310,7 @@
         <p class="text-sm text-ink-500 dark:text-ink-300 max-w-xs">An interactive dashboard for developers building accessible interfaces.</p>
       </div>
       <div>
-        <h4 class="text-[12px] uppercase tracking-wider font-semibold text-ink-500 mb-4">Standards</h4>
+        <h2 class="text-[12px] uppercase tracking-wider font-semibold text-ink-500 mb-4">Standards</h2>
         <ul class="space-y-2 text-sm">
           <li><a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer" aria-label="WCAG 2.1 (opens in new tab)" class="hover:text-accent dark:hover:text-accent-dark transition-colors">WCAG 2.1</a></li>
           <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer" aria-label="WCAG 2.2 (opens in new tab)" class="hover:text-accent dark:hover:text-accent-dark transition-colors">WCAG 2.2</a></li>
@@ -5069,7 +5320,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="text-[12px] uppercase tracking-wider font-semibold text-ink-500 mb-4">Your progress</h4>
+        <h2 class="text-[12px] uppercase tracking-wider font-semibold text-ink-500 mb-4">Your progress</h2>
         <p class="text-sm text-ink-500 dark:text-ink-300 mb-3"><span id="footer-progress">0</span> of 6 modules complete</p>
         <button id="reset-progress" class="text-sm font-medium text-accent dark:text-accent-dark hover:underline">Reset progress</button>
       </div>
@@ -5090,9 +5341,77 @@
 <!-- ============================================================== -->
 <!-- SCRIPTS                                                         -->
 <!-- ============================================================== -->
+<script src="./assets/content-models.js"></script>
 <script>
 (() => {
   'use strict';
+
+  /* -------------------------------------------------- */
+  /* Structured product content                         */
+  /* -------------------------------------------------- */
+  (function renderStructuredContent() {
+    const content = window.A11Y_CONTENT;
+    if (!content) return;
+    const safe = (value) => String(value == null ? '' : value)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+    const pathGrid = document.getElementById('learning-path-grid');
+    if (pathGrid) {
+      pathGrid.innerHTML = content.learningPaths.map((path) => `
+        <article class="model-card">
+          <h3>${safe(path.title)}</h3>
+          <p>${safe(path.description)}</p>
+          <ul aria-label="Topics">${path.topics.map((topic) => `<li>${safe(topic)}</li>`).join('')}</ul>
+          <a href="${safe(path.href)}">Explore this path <span aria-hidden="true">→</span></a>
+        </article>
+      `).join('');
+    }
+
+    const status = content.exampleStatuses.reference;
+    document.querySelectorAll('.pattern-card, #playgrounds article[id^="pg-"]').forEach((card) => {
+      card.dataset.exampleStatus = 'reference';
+      const heading = card.querySelector('h3');
+      if (!heading || heading.previousElementSibling?.classList.contains('example-status')) return;
+      const badge = document.createElement('span');
+      badge.className = 'example-status';
+      badge.textContent = status.label;
+      badge.title = status.description;
+      heading.before(badge);
+    });
+
+    const matrixBody = document.getElementById('testing-matrix-body');
+    if (matrixBody) {
+      matrixBody.innerHTML = content.testingMatrix.map((row) => `
+        <tr>
+          <th scope="row">${safe(row.browser)}</th>
+          <td>${safe(row.screenReader)}</td>
+          <td>${safe(row.platform)}</td>
+          <td><span class="test-status">${safe(row.status)}</span></td>
+          <td>${safe(row.notes)}</td>
+        </tr>
+      `).join('');
+    }
+
+    const trustGrid = document.getElementById('trust-grid');
+    if (trustGrid) {
+      trustGrid.innerHTML = Object.values(content.standards).map((item) => `
+        <article class="model-card trust-card">
+          <div class="example-status">${safe(item.kind)}</div>
+          <h3>${safe(item.name)}</h3>
+          <dl>
+            <dt>Version</dt><dd>${safe(item.version)}</dd>
+            <dt>Level / requirement</dt><dd>${safe(item.level)}</dd>
+            <dt>Current status</dt><dd>${safe(item.status)}</dd>
+            <dt>Jurisdiction</dt><dd>${safe(item.jurisdiction)}</dd>
+            <dt>Last reviewed</dt><dd><time datetime="${safe(item.lastReviewed)}">${safe(item.lastReviewed)}</time></dd>
+            <dt>Primary source</dt><dd><a class="text-accent dark:text-accent-dark underline" href="${safe(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${safe(item.primarySource)}<span class="sr-only"> (opens in a new tab)</span></a></dd>
+            <dt>Notes</dt><dd>${safe(item.notes)}</dd>
+          </dl>
+        </article>
+      `).join('');
+    }
+  })();
 
   /* -------------------------------------------------- */
   /* Year                                               */
@@ -5388,7 +5707,7 @@
     xrayBtn.setAttribute('aria-pressed', String(on));
   });
 
-  /* ---------- Screen reader playback ---------- */
+  /* ---------- Browser speech simulation (not screen-reader output) ---------- */
   function getAccessibleName(el) {
     if (!el) return '';
     let lbl = el.getAttribute('aria-label');
@@ -5792,7 +6111,7 @@
         q: 'What\'s the minimum target size required for WCAG 2.2 AA?',
         opts: ['16 × 16 CSS pixels','24 × 24 CSS pixels','44 × 44 CSS pixels','48 × 48 device pixels'],
         correct: 1,
-        why: 'WCAG 2.2 SC 2.5.8 (AA) requires 24 × 24 CSS pixels minimum. Apple HIG recommends 44 pt, Material recommends 48 dp — both exceed the floor, which is what you should design to.'
+        why: 'WCAG 2.2 SC 2.5.8 (AA) uses a 24 × 24 CSS pixel minimum with spacing, equivalent, inline, user-agent-control, and essential exceptions. Larger platform recommendations are useful guidance, not the same requirement.'
       },
       {
         q: 'A modal dialog opens. Where should keyboard focus go?',
@@ -5810,7 +6129,7 @@
         q: 'You\'re shipping to a U.S. federal agency. Which standard MUST you meet?',
         opts: ['WCAG 2.2 AAA','WCAG 2.0 AA via Section 508','ADA Title II','EN 301 549'],
         correct: 1,
-        why: 'The 2018 ICT Refresh of Section 508 formally adopted WCAG 2.0 Level A and AA. Many agencies voluntarily target 2.1 AA, but the legal floor is 2.0 AA.'
+        why: 'The Revised Section 508 Standards incorporate WCAG 2.0 Level A and AA success criteria and conformance requirements by reference for covered ICT. Applicability depends on the federal context.'
       },
     ];
 
@@ -5875,7 +6194,7 @@
      PHASE 3 FEATURES
      ==================================================================== */
 
-  /* ---------- WCAG dataset (all 87 across 2.0 / 2.1 / 2.2) ---------- */
+  /* ---------- WCAG dataset (86 current WCAG 2.2 SCs + historical 4.1.1) ---------- */
   const WCAG_DATA = [
     // Principle 1: Perceivable
     {n:'1.1.1', t:'Non-text Content',                             l:'A',   v:'2.0', p:'P', g:'Text Alternatives',     s:'Every image, icon, video thumbnail, and non-text element has a text alternative that serves the same purpose.'},
@@ -5941,7 +6260,7 @@
     {n:'2.5.5', t:'Target Size (Enhanced)',                       l:'AAA', v:'2.1', p:'O', g:'Input Modalities',       s:'Touch targets are at least 44×44 CSS pixels. AAA version.'},
     {n:'2.5.6', t:'Concurrent Input Mechanisms',                  l:'AAA', v:'2.1', p:'O', g:'Input Modalities',       s:'Don\'t restrict input methods. Touch + keyboard + mouse all work together.'},
     {n:'2.5.7', t:'Dragging Movements',                           l:'AA',  v:'2.2', p:'O', g:'Input Modalities',       s:'Drag operations have a single-pointer alternative (e.g., reorder via buttons).'},
-    {n:'2.5.8', t:'Target Size (Minimum)',                        l:'AA',  v:'2.2', p:'O', g:'Input Modalities',       s:'Touch targets at least 24×24 CSS px. (Exceptions for inline text, native, equivalent options.)', link:'#pg-target-size'},
+    {n:'2.5.8', t:'Target Size (Minimum)',                        l:'AA',  v:'2.2', p:'O', g:'Input Modalities',       s:'Pointer targets provide a 24×24 CSS px area or satisfy a defined spacing, equivalent, inline, user-agent-control, or essential exception.', link:'#pg-target-size'},
     // Principle 3: Understandable
     {n:'3.1.1', t:'Language of Page',                             l:'A',   v:'2.0', p:'U', g:'Readable',               s:'Set the lang attribute on the <html> element.'},
     {n:'3.1.2', t:'Language of Parts',                            l:'AA',  v:'2.0', p:'U', g:'Readable',               s:'Mark inline language changes with lang attribute.'},
@@ -6018,7 +6337,7 @@
     function render() {
       const q = filters.q;
       const matches = WCAG_DATA.filter(passFilter);
-      countEl.textContent = matches.length + ' of ' + WCAG_DATA.length;
+      countEl.textContent = matches.length + ' of ' + WCAG_DATA.length + ' entries';
       if (!matches.length) {
         grid.innerHTML = '';
         empty.style.display = 'block';
@@ -6158,7 +6477,7 @@
       const sec = h.closest('section[id]');
       if (!sec) return;
       const id = sec.id;
-      if (h.querySelector('.share-link')) return;
+      if (h.nextElementSibling?.classList.contains('share-link')) return;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'share-link';
@@ -6173,7 +6492,7 @@
           setTimeout(() => btn.classList.remove('copied'), 1800);
         } catch (e) { showToast('Copy failed'); }
       });
-      h.appendChild(btn);
+      h.insertAdjacentElement('afterend', btn);
     });
 
     // Scroll-spy: update URL hash as user scrolls (without jumping)
@@ -6269,7 +6588,7 @@
       'pat-date-h': [
         'Uses native <input type="date"> if possible',
         'Has visible <label> or aria-label',
-        'autocomplete="bday" or "birthday" where appropriate',
+        'autocomplete="bday" only when collecting the user\'s birthday',
         'Format is stated near the field (MM/DD/YYYY)',
         'Custom calendars follow APG datepicker pattern',
       ],
@@ -6526,7 +6845,7 @@
         if (w && h) {
           const wp = +w[1], hp = +h[1];
           if (wp < 24 || hp < 24) {
-            issues.push({sev:'warning', wcag:'2.5.8', t:`Target too small (${wp}×${hp}px)`, d:'WCAG 2.2 AA requires at least 24×24 CSS px. Apple HIG recommends 44pt, Material recommends 48dp.'});
+            issues.push({sev:'warning', wcag:'2.5.8', t:`Review small target (${wp}×${hp}px)`, d:'WCAG 2.2 SC 2.5.8 uses a 24×24 CSS px minimum with defined exceptions. This automated check cannot determine whether an exception applies.'});
           }
         }
       });
@@ -6649,7 +6968,7 @@
       {
         target: '#controls-toggle',
         title: 'Your accessibility tools',
-        body:  'This gear opens vision simulators, x-ray mode, and the screen reader playback controls. Use it any time.',
+        body:  'This gear opens vision simulators, x-ray mode, and browser-based announcement simulations. These tools approximate semantics; they do not replace assistive-technology testing.',
       },
       {
         target: null, // centred — no element to spotlight for a keyboard tip
@@ -7301,7 +7620,7 @@
       { t: 'No content flashes more than 3× per second',                                  wcag: '2.3.1' },
     ]},
     { group: 'Touch & Motion', items: [
-      { t: 'Touch targets are at least 24×24 CSS px (44pt iOS / 48dp Material preferred)',wcag: '2.5.8' },
+      { t: 'Pointer targets meet 24×24 CSS px or a documented SC 2.5.8 exception; larger guidance is evaluated separately',wcag: '2.5.8' },
       { t: 'Adjacent targets have ≥8px gap or meet enhanced size',                        wcag: '2.5.8' },
       { t: 'No drag-only operations (provide tap/click alternative)',                     wcag: '2.5.7' },
       { t: 'No motion-only triggers (provide button alternative)',                        wcag: '2.5.4' },
@@ -7630,6 +7949,17 @@
     // ----- IA: maps the documentation structure to existing anchors -----
     const NAV_STRUCTURE = [
       {
+        title: 'Product Areas',
+        items: [
+          { label: 'Home',            href: '#top' },
+          { label: 'Learning Paths',  href: '#learning-paths' },
+          { label: 'Playground',      href: '#playgrounds' },
+          { label: 'Patterns',        href: '#patterns' },
+          { label: 'Testing Matrix',  href: '#testing-matrix' },
+          { label: 'Standards',       href: '#standards' },
+        ],
+      },
+      {
         title: 'Fundamentals',
         items: [
           { label: 'Semantic HTML',       href: '#semantic-ref' },
@@ -7668,20 +7998,22 @@
         title: 'Developer Tools',
         items: [
           { label: 'Contrast Checker',  href: '#tool-contrast' },
-          { label: 'ARIA Inspector',    href: '#tool-aria-inspector' },
+          { label: 'Accessibility Tree',href: '#tool-aria-inspector' },
           { label: 'Health Check',      href: '#tool-health' },
           { label: 'Heading Outline',   href: '#tool-headings' },
           { label: 'Landmark Inspector',href: '#tool-landmarks' },
         ],
       },
       {
-        title: 'WCAG & Compliance',
+        title: 'Standards & Review',
         items: [
           { label: 'WCAG Explorer',       href: '#wcag-index' },
           { label: 'Mobile Accessibility',href: '#mobile' },
           { label: 'Pre-Merge Checklist', href: '#pre-merge' },
           { label: 'Legal Frameworks',    href: '#legal' },
           { label: "What's New in 2.2",   href: '#quickref' },
+          { label: 'Methodology',         href: '#methodology' },
+          { label: 'Corrections',         href: '#corrections' },
           { label: 'Sources & citations',  href: '#sources' },
         ],
       },
@@ -8082,20 +8414,23 @@
 
     // ----- index data ----------------------------------------------------
     const SECTION_ITEMS = [
-      { type:'section', title:'Hero', sub:'Top of page', href:'#top', icon:'home' },
+      { type:'section', title:'Home', sub:'508 Dev product overview', href:'#top', icon:'home' },
+      { type:'section', title:'Learning Paths', sub:'Structured accessibility learning tracks', href:'#learning-paths', icon:'book' },
       { type:'section', title:'Pattern Library', sub:'Modal, Tabs, Combobox, Toast, Tooltip + 4 more', href:'#patterns', icon:'box' },
       { type:'section', title:'Playgrounds', sub:'Interactive WCAG criteria demos', href:'#playgrounds', icon:'play' },
-      { type:'section', title:'Live Tools', sub:'Contrast, ARIA inspector, Health check + 2 more', href:'#tools', icon:'tool' },
+      { type:'section', title:'Live Tools', sub:'Contrast, accessibility tree, health check + 2 more', href:'#tools', icon:'tool' },
+      { type:'section', title:'Testing Matrix', sub:'Browser and assistive-technology verification status', href:'#testing-matrix', icon:'check' },
       { type:'section', title:'Reference: ARIA',          sub:'Attributes and roles, filterable',      href:'#aria-ref',      icon:'rule' },
       { type:'section', title:'Reference: Keyboard',      sub:'Widget × keys matrix',                  href:'#keyboard-ref',  icon:'rule' },
       { type:'section', title:'Reference: Semantic HTML', sub:'Landmarks, headings, button vs link',   href:'#semantic-ref',  icon:'book' },
       { type:'section', title:'Reference: Live Regions',  sub:'Decision matrix + gotchas',             href:'#live-regions',  icon:'book' },
       { type:'section', title:'Pre-merge checklist',      sub:'Code-review companion (persisted)',     href:'#pre-merge',     icon:'check' },
-      { type:'section', title:'WCAG Index', sub:'All 87 success criteria, searchable', href:'#wcag-index', icon:'rule' },
+      { type:'section', title:'WCAG Index', sub:'86 current WCAG 2.2 criteria + historical 4.1.1', href:'#wcag-index', icon:'rule' },
       { type:'section', title:'Mobile A11y', sub:'Touch targets, orientation, reflow, motion', href:'#mobile', icon:'phone' },
-      { type:'section', title:'Legal Frameworks', sub:'Section 508, ADA Title III, cases', href:'#legal', icon:'shield' },
+      { type:'section', title:'Standards & Legal Context', sub:'WCAG, Section 508, ADA Title II, and ADA Title III', href:'#standards', icon:'shield' },
       { type:'section', title:'Quick Reference', sub:"What's new in WCAG 2.2", href:'#quickref', icon:'book' },
       { type:'section', title:'Sources & Legal References', sub:'WCAG, Section 508, ADA, DOJ guidance, landmark cases', href:'#sources', icon:'book' },
+      { type:'section', title:'Trust & Governance', sub:'Accessibility statement, methodology, changelog, corrections', href:'#governance', icon:'check' },
       { type:'section', title:'Quiz', sub:'Test your knowledge', href:'#quiz', icon:'check' },
     ];
     const PATTERN_ITEMS = [
@@ -8122,7 +8457,7 @@
       { type:'topic', title:'role attribute',   sub:'Native vs ARIA roles, when each is needed',         href:'#aria-ref', icon:'rule', extra:'role landmark' },
       { type:'topic', title:'Focus management', sub:'Tab order, focus rings, focus trap, restore',       href:'#pat-modal-h', icon:'eye', extra:'tabindex outline keyboard' },
       { type:'topic', title:'Color contrast',   sub:'WCAG 1.4.3 — 4.5:1 text contrast',                  href:'#wcag-1-4-3', icon:'rule', extra:'contrast ratio luminance' },
-      { type:'topic', title:'Target size',      sub:'WCAG 2.5.8 — minimum 24×24 hit area',               href:'#pg-target-size', icon:'rule', extra:'tap touch hit area' },
+      { type:'topic', title:'Target size',      sub:'WCAG 2.5.8 — 24×24 minimum and defined exceptions', href:'#pg-target-size', icon:'rule', extra:'tap touch hit area spacing exception' },
       { type:'topic', title:'Screen reader',    sub:'NVDA, JAWS, VoiceOver basics and testing',          href:'#aria-ref', icon:'eye', extra:'sr at assistive tech' },
       { type:'topic', title:'Landmarks',        sub:'main, nav, header, footer, aside — semantic HTML',  href:'#semantic-ref', icon:'book', extra:'navigation structure' },
       { type:'topic', title:'Skip to content',  sub:'Bypass repetitive navigation — WCAG 2.4.1',         href:'#pat-skip-h', icon:'box', extra:'skip link bypass' },

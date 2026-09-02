@@ -4,7 +4,7 @@ Interactive accessibility training platform for web developers featuring WCAG 2.
 
 # 508 Dev
 
-> Interactive accessibility training for web developers.
+> The interactive accessibility lab for people who build interfaces.
 
 A premium, developer-first accessibility platform focused on real implementation patterns, WCAG 2.2 workflows, semantic HTML, ARIA systems, keyboard interactions, and production-grade front-end accessibility engineering.
 
@@ -12,8 +12,8 @@ A premium, developer-first accessibility platform focused on real implementation
   <img alt="WCAG" src="https://img.shields.io/badge/WCAG-2.2_AA-0071e3?style=flat-square" />
   <img alt="Tech" src="https://img.shields.io/badge/stack-vanilla_JS-111?style=flat-square" />
   <img alt="Dependencies" src="https://img.shields.io/badge/dependencies-0-22c55e?style=flat-square" />
-  <img alt="Status" src="https://img.shields.io/badge/status-production_ready-22c55e?style=flat-square" />
-  <img alt="Architecture" src="https://img.shields.io/badge/architecture-single_file-666?style=flat-square" />
+  <img alt="Status" src="https://img.shields.io/badge/status-public_preview-0071e3?style=flat-square" />
+  <img alt="Architecture" src="https://img.shields.io/badge/architecture-static_routes-666?style=flat-square" />
 </p>
 
 ---
@@ -30,9 +30,9 @@ https://www.508dev.com
 
 508 Dev is an interactive accessibility engineering platform designed for developers who build production user interfaces.
 
-Instead of teaching accessibility through static documentation alone, 508 Dev provides live playgrounds, production-ready component patterns, keyboard interaction systems, screen reader-focused behaviors, WCAG references, developer utilities, and interactive testing environments.
+Instead of teaching accessibility through static documentation alone, 508 Dev provides live playgrounds, classified reference patterns, keyboard interaction systems, browser-exposed semantic inspection, WCAG references, developer utilities, and interactive testing environments.
 
-The platform is intentionally built as a single-file application with zero build tooling and zero runtime dependencies beyond the browser.
+The platform is a static, progressively routed application with zero runtime package dependencies. The main interactive experience remains in `index.html`; focused top-level routes provide stable, bookmarkable entry points.
 
 It is optimized primarily for:
 
@@ -72,7 +72,7 @@ Every feature is implementation-focused.
 
 # Interactive Accessibility Playgrounds
 
-Hands-on WCAG playgrounds designed to demonstrate accessibility failures and production-ready solutions side-by-side.
+Hands-on WCAG playgrounds designed to demonstrate accessibility failures and repaired reference implementations side-by-side.
 
 ### Included playgrounds
 
@@ -123,7 +123,8 @@ The pattern system focuses on implementation realism rather than simplified demo
 
 Full WCAG 2.2 reference layer including:
 
-* all 87 success criteria
+* 86 current WCAG 2.2 success criteria
+* SC 4.1.1 Parsing retained and labeled as a historical WCAG 2.0/2.1 criterion
 * level filtering (A / AA / AAA)
 * principle filtering
 * version filtering
@@ -389,7 +390,7 @@ Primary optimization target:
 | Styling      | Tailwind CSS + custom CSS     |
 | Behavior     | Vanilla JavaScript            |
 | Icons        | Inline SVG                    |
-| Architecture | Single-file application       |
+| Architecture | Static routes + interactive document |
 | Storage      | localStorage / sessionStorage |
 
 ### Philosophy
@@ -398,7 +399,7 @@ No frameworks.
 
 No build tooling.
 
-No package manager.
+Node-based repository audits are available through npm scripts; the shipped site itself has no package-runtime dependency.
 
 No runtime dependencies.
 
@@ -409,14 +410,19 @@ The shipped file is the source file.
 ## Project Structure
 
 ```txt
-508-dev/
-│
-├── index.html
-├── README.md
-├── QA-Test-Report.md
-└── assets/
-    ├── screenshots/
-    └── gifs/
+508Dev/
+├── index.html                  # Interactive home and complete legacy experience
+├── learn/index.html            # Learning-path entry point
+├── playground/index.html       # Playground catalog
+├── playground/target-size/     # Deep-linkable lab
+├── patterns/index.html         # Pattern catalog
+├── test/index.html             # Testing tools and workflows
+├── reference/index.html        # Developer reference catalog
+├── standards/index.html        # Standards and legal-context catalog
+├── assets/content-models.js    # Central standards, status, path, and test data
+├── assets/route.css            # Shared route design system
+├── scripts/audit.mjs           # Repository accuracy and structure checks
+└── package.json                # Audit/test commands
 ```
 
 ---
@@ -511,20 +517,16 @@ Because the platform is static and dependency-free, deployment is instant on vir
 
 ## QA Status
 
-### Production QA Summary
+### Current QA Summary
 
-* Full functional QA completed
-* Accessibility QA completed
-* Responsive QA completed
-* Theme/rendering QA completed
-* Search/navigation QA completed
-* Interaction QA completed
-* Cross-browser validation completed
+* Automated source, JavaScript-syntax, metadata, and heading checks are maintained in the repository
+* Desktop and mobile browser smoke checks are part of the release workflow
+* Browser/assistive-technology combinations remain explicitly untested until results are documented
 
-### Final QA Result
+### Current release classification
 
 ```txt
-APPROVED FOR PRODUCTION
+PUBLIC PREVIEW — REFERENCE EXAMPLES
 ```
 
 ---
@@ -533,7 +535,7 @@ APPROVED FOR PRODUCTION
 
 Potential future roadmap:
 
-* multi-page documentation architecture
+* additional deep-linkable detail routes
 * downloadable accessibility audit reports
 * PDF accessibility tooling
 * screen reader announcement debugger
@@ -591,23 +593,12 @@ https://github.com/deandreperry
 
 ---
 
-## Final Production Status
+## Release Status
 
-508 Dev has completed:
-
-* production QA review
-* accessibility QA review
-* interaction stability testing
-* navigation testing
-* search system testing
-* responsive testing
-* visual consistency review
-* theme rendering validation
-
-The platform is considered:
+Example quality is classified as **Reference**, **Complete**, or **Tested**. Existing examples are labeled Reference until the documented browser and assistive-technology matrix supports stronger claims.
 
 ```txt
-Production Ready
+Public Preview
 ```
 
-for public portfolio release and GitHub Pages deployment.
+for public portfolio use and static hosting.

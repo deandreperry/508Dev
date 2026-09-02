@@ -1,0 +1,13 @@
+{
+  "name": "508dev",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Interactive accessibility education platform for interface developers",
+  "scripts": {
+    "lint": "node scripts/audit.mjs",
+    "typecheck": "node --check assets/content-models.js",
+    "test": "node --test tests/site.test.mjs",
+    "build": "node scripts/audit.mjs",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
+  }
+}

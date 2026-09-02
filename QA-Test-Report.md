@@ -6,7 +6,9 @@
 **Test date:** May 20, 2026
 **Test environment:** jsdom 22.x (Node.js 22.22.2) · Linux containerized
 **Static analysis:** `node --check` against all 5 embedded script blocks
-**Report status:** **APPROVED FOR PRODUCTION**
+**Report status:** **ARCHIVED — SUPERSEDED BY THE SEPTEMBER 2, 2026 REMEDIATION AUDIT**
+
+> This report documents an earlier test run and is retained for historical context. It does not establish current accessibility conformance, production readiness, or browser/assistive-technology coverage. Use `npm run check` for the current automated source checks and the published testing matrix for documented manual coverage.
 
 ---
 
@@ -25,7 +27,7 @@
 | Defects resolved during cycle | 2 |
 | Outstanding defects | 0 |
 
-**Recommendation:** Build is approved for production release. All P0 / P1 functional, accessibility, and stability criteria are satisfied. No outstanding defects. No console errors in any tested workflow.
+**Historical recommendation:** The earlier build passed the automated scope described below. That result is not a current production-readiness or accessibility-conformance claim.
 
 ---
 
@@ -33,7 +35,7 @@
 
 ### 2.1 Approach
 
-Tests were executed as a consolidated end-to-end runtime suite that loads the full HTML document into a real DOM environment, executes all embedded JavaScript, and exercises every major system through user-equivalent interactions (synthetic click, keydown, focus, scroll). Tests were written against the same DOM API a real browser exposes, so any test that passes here passes in production browsers — with the documented exceptions of features jsdom does not implement (real `scrollTo`, real `IntersectionObserver` callbacks, real `localStorage` on `about:blank`), which were either mocked or filtered.
+Tests were executed as a consolidated DOM-based suite that loaded the HTML document and exercised major systems with synthetic events. A DOM simulation is useful regression coverage, but passing it does not guarantee equivalent behavior in production browsers or assistive technologies.
 
 ### 2.2 Tools
 
@@ -70,7 +72,7 @@ Tests were executed as a consolidated end-to-end runtime suite that loads the fu
 | Onboarding tour | Full — including scroll-to-top finish |
 | Floating controls (gear, scroll-top, contents, search) | Full |
 | Pattern library content rendering | Full |
-| WCAG reference (87 criteria + filters) | Full |
+| WCAG reference (86 current WCAG 2.2 criteria + historical SC 4.1.1) | Full |
 | ARIA reference (75 cards) | Full |
 | Keyboard reference (20 widgets) | Full |
 | Pre-merge checklist (7 groups, 44 items) | Full |
@@ -187,7 +189,7 @@ Verified IDs: `top`, `patterns`, `playgrounds`, `tools`, `reference`, `aria-ref`
 
 | ID | Test case | Result |
 |---|---|---|
-| CR-01 | All 87 WCAG criteria cards render | ✓ Pass |
+| CR-01 | All 87 dataset entries render (86 current + historical SC 4.1.1) | ✓ Pass |
 | CR-02 | ARIA reference cards render | ✓ Pass |
 | CR-03 | Keyboard reference cards render | ✓ Pass |
 | CR-04 | Pre-merge checklist has exactly 7 groups | ✓ Pass |
@@ -295,7 +297,7 @@ Verified IDs: `top`, `patterns`, `playgrounds`, `tools`, `reference`, `aria-ref`
 | **Title** | WCAG card selector mismatch in test harness |
 | **Description** | The audit test used selector `[data-wcag-num]` but production cards use `class="wcag-card"` with `data-wcag` (no `-num` suffix). The 87 cards rendered correctly in production; the test selector was incorrect. |
 | **Resolution** | Corrected the test selector to `.wcag-card`. Production code was already correct; no application change required. |
-| **Re-test result** | ✓ Pass — 87 WCAG cards verified. |
+| **Re-test result** | ✓ Pass — 87 dataset entries verified (86 current + historical SC 4.1.1). |
 
 ---
 
@@ -389,7 +391,7 @@ The following are documented design decisions or platform-inherent limitations, 
 | **P0 defects** | 0 |
 | **P1 defects outstanding** | 0 |
 | **P2 defects outstanding** | 0 |
-| **Recommendation** | **APPROVED FOR PRODUCTION RELEASE** |
+| **Historical recommendation** | Automated scope passed; current release status is tracked separately. |
 
 The build under test (`508dev-dashboard.html`, 8,042 lines, 396 KB) meets all functional, accessibility, structural, and stability criteria defined for the production release of 508 Dev. All defects discovered during this cycle were resolved and re-tested within the same cycle. No outstanding work remains.
 
@@ -402,7 +404,7 @@ The build under test (`508dev-dashboard.html`, 8,042 lines, 396 KB) meets all fu
 | Test author | Defined test cases, executed cycle, documented results | Complete |
 | Test execution | Automated end-to-end runtime suite via jsdom + Node.js | Complete |
 | Defect triage | All defects classified, resolved, re-tested | Complete |
-| Production readiness | Verified against all criteria in scope | **Approved** |
+| Automated regression scope | Verified against the historical criteria in this report | **Passed at time of report** |
 
 **Report generated:** May 20, 2026
 **Build artifact:** `508dev-dashboard.html`
